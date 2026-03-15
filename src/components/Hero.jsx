@@ -1,6 +1,8 @@
-import React from 'react';
+import config from '../config';
 
 const Hero = () => {
+    const whatsappLink = config.whatsappGroupLink || `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(config.whatsappMessage)}`;
+
     return (
         <section className="relative overflow-hidden pt-16 pb-8 md:pt-24 md:pb-12 px-4">
             {/* Light Mode Glow Background */}
@@ -22,13 +24,13 @@ const Hero = () => {
 
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-reveal reveal-delay-3">
                     <a
-                        href="https://wa.me/919234121545?text=Hi%20I%20want%20details"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href={whatsappLink}
+                        target={whatsappLink === '#' ? "_self" : "_blank"}
+                        rel={whatsappLink === '#' ? undefined : "noopener noreferrer"}
                         className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-emerald-600 rounded-xl transition-all duration-500 transform hover:scale-105 hover:bg-emerald-700 shadow-[0_10px_30px_-10px_rgba(5,150,105,0.4)] active:scale-95 overflow-hidden"
                     >
                         <span className="relative z-10 flex items-center">
-                            Message on WhatsApp
+                            Join WhatsApp Group
                             <svg
                                 className="ml-2 w-5 h-5 transition-transform duration-500 group-hover:translate-x-1"
                                 fill="none"
